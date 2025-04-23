@@ -1,0 +1,404 @@
+!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="My personal bird appreciation page - celebrating our feathered friends">
+  <title>Bird Friends - A Bird Lover's Paradise</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Caveat:wght@500&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --sky-blue: #87ceeb;
+      --sunset-orange: #ff7f50;
+      --tree-green: #2e8b57;
+      --twilight-purple: #663399;
+      --feather-gray: #f8f9fa;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, var(--sky-blue), var(--feather-gray));
+      min-height: 100vh;
+    }
+
+    .handwritten {
+      font-family: 'Caveat', cursive;
+    }
+
+    .bird-card {
+      transition: transform 0.3s ease-in-out;
+      border: 3px solid var(--tree-green);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .bird-card:hover {
+      transform: translateY(-5px) rotate(2deg);
+    }
+
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--sunset-orange) !important;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--sunset-orange);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .bird-animation {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+
+    .flying-bird {
+      position: absolute;
+      font-size: 2rem;
+      animation: fly 15s linear infinite;
+    }
+
+    @keyframes fly {
+      0% { transform: translateX(-100px) translateY(0) rotate(0deg); }
+      25% { transform: translateX(25%) translateY(-50px) rotate(10deg); }
+      50% { transform: translateX(50%) translateY(0) rotate(0deg); }
+      75% { transform: translateX(75%) translateY(-50px) rotate(-10deg); }
+      100% { transform: translateX(100%) translateY(0) rotate(0deg); }
+    }
+
+    .quiz-score {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--tree-green);
+      margin-bottom: 1rem;
+    }
+
+    .sound-button {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .sound-button:hover {
+      transform: scale(1.1);
+    }
+
+    .loading-spinner {
+      animation: spin 1s linear infinite;
+      width: 2rem;
+      height: 2rem;
+      border: 3px solid var(--tree-green);
+      border-top-color: transparent;
+      border-radius: 50%;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .quiz-error {
+      animation: shake 0.5s;
+      border: 2px solid #dc3545 !important;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: linear-gradient(to bottom, var(--twilight-purple), #1a1a1a);
+        color: #fff;
+      }
+
+      .bird-card {
+        border-color: var(--sky-blue);
+        background-color: #2c2c2c !important;
+      }
+
+      .bg-light {
+        background-color: #2c2c2c !important;
+      }
+
+      .text-primary {
+        color: var(--sky-blue) !important;
+      }
+    }
+  </style>
+</head>
+<body class="d-flex flex-column h-100">
+  <a href="#main-content" class="visually-hidden-focusable btn btn-primary skip-link">Skip to main content</a>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 shadow sticky-top">
+    <div class="container">
+      <a class="navbar-brand handwritten fs-3" href="#"><i class="fas fa-dove me-2"></i>Bird Friends</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-shrink-0 py-5" id="main-content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h1 class="display-4 text-center mb-4 handwritten text-primary">
+            Welcome to My Feathered World
+          </h1>
+
+          <div class="bird-card p-4 mb-5 bg-white shadow">
+            <p class="lead">
+              Hey there! I'm Jordan Nnamani, and I've been obsessed with birds since I was a kid.
+              There's just something magical about how they move through the air, don't you think? 
+              This site is my little tribute to these amazing creatures.
+            </p>
+
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/3/32/House_sparrow04.jpg"
+              alt="A cute house sparrow looking curious"
+              class="img-fluid rounded-3 my-4 shadow"
+              loading="lazy"
+            />
+
+            <div class="alert alert-info mt-4">
+              <p class="mb-0">
+                <i class="fas fa-info-circle me-2"></i>
+                Fun fact: A hummingbird's wings can beat up to 200 times per second! 
+                Pretty cool, right? I'll be sharing more amazing bird facts like this.
+              </p>
+            </div>
+          </div>
+
+          <div class="bird-animation">
+            <i class="fas fa-dove flying-bird" style="left: 0; top: 50px;"></i>
+            <i class="fas fa-dove flying-bird" style="left: 0; top: 100px; animation-delay: 2s;"></i>
+            <i class="fas fa-dove flying-bird" style="left: 0; top: 150px; animation-delay: 4s;"></i>
+          </div>
+
+          <div class="container mt-5">
+            <h2 class="text-center handwritten"><i class="fas fa-brain me-2"></i>Test Your Bird Knowledge!</h2>
+            <div class="quiz-score text-center">Your Score: <span id="score">0</span></div>
+            <div id="quizBox" class="bg-light p-4 rounded shadow mt-3">
+              <div id="quizLoader" class="text-center py-3">
+                <div class="loading-spinner mx-auto"></div>
+                <p class="mt-2 mb-0">Loading bird sounds...</p>
+              </div>
+              <div id="quizContent" style="display: none;">
+                <p id="question" class="fw-bold"></p>
+                <select id="choices" class="form-select mb-3">
+                  <option value="">Choose an answer...</option>
+                </select>
+                <div class="d-flex justify-content-between">
+                  <button id="checkAnswer" class="btn btn-success">
+                    <i class="fas fa-check me-2"></i>Check Answer
+                  </button>
+                  <button id="newQuestion" class="btn btn-outline-primary">
+                    <i class="fas fa-sync-alt me-2"></i>New Question
+                  </button>
+                  <button id="playSound" class="btn btn-outline-info sound-button">
+                    <i class="fas fa-volume-up"></i>
+                  </button>
+                </div>
+                <div id="quizFeedback" class="mt-3"></div>
+              </div>
+              <div id="quizError" class="alert alert-danger mt-3" style="display: none;"></div>
+            </div>
+          </div>
+
+          <section class="mt-5" id="videos">
+            <h2 class="text-center handwritten mb-4"><i class="fas fa-video me-2"></i>Bird Videos</h2>
+            <div class="row g-4" id="videoContainer">
+              <!-- Videos load here -->
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="mt-auto bg-dark text-white-50 py-4">
+    <div class="container text-center">
+      <p class="mb-0 handwritten fs-5">
+        Made with <i class="fas fa-feather-alt"></i> and <i class="fas fa-coffee"></i> by Jordan<br>
+        <small class="text-muted">© 2025 Bird Friends</small>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const YT_API_KEY = 'AIzaSyDzueu9cpoe4SZ7PtI9i9Aqkwo8BPlbDAM';
+    let currentQuestion = {};
+    let score = 0;
+    let audio = new Audio();
+
+    async function fetchBirdData() {
+      try {
+        const response = await fetch('https://xeno-canto.org/api/2/recordings?query=q:A');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        return data.recordings.slice(0, 6);
+      } catch (error) {
+        console.error('Error fetching bird data:', error);
+        document.getElementById('quizError').style.display = 'block';
+        document.getElementById('quizError').textContent = 
+          `Error loading bird sounds: ${error.message}`;
+        return [];
+      }
+    }
+
+    async function loadQuestion() {
+      try {
+        document.getElementById('quizLoader').style.display = 'block';
+        document.getElementById('quizContent').style.display = 'none';
+        document.getElementById('quizError').style.display = 'none';
+
+        const birds = await fetchBirdData();
+        if (birds.length === 0) return;
+
+        const correctBird = birds[Math.floor(Math.random() * birds.length)];
+        const options = birds
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 3)
+          .map(b => b.en)
+          .concat(correctBird.en)
+          .sort(() => 0.5 - Math.random());
+
+        currentQuestion = {
+          question: "Which bird makes this sound?",
+          answer: correctBird.en || 'Unknown Bird',
+          options: options,
+          sound: correctBird.file
+        };
+
+        document.getElementById('question').textContent = currentQuestion.question;
+        const select = document.getElementById('choices');
+        select.innerHTML = `<option value="">Choose an answer...</option>`;
+        currentQuestion.options.forEach(option => {
+          const opt = document.createElement('option');
+          opt.value = option;
+          opt.textContent = option || 'Unknown Bird';
+          select.appendChild(opt);
+        });
+
+        audio.src = currentQuestion.sound;
+        document.getElementById('quizLoader').style.display = 'none';
+        document.getElementById('quizContent').style.display = 'block';
+      } catch (error) {
+        document.getElementById('quizError').style.display = 'block';
+        document.getElementById('quizError').textContent = 
+          `Error loading question: ${error.message}`;
+      }
+    }
+
+    document.getElementById('checkAnswer').addEventListener('click', () => {
+      const selected = document.getElementById('choices').value;
+      const feedback = document.getElementById('quizFeedback');
+
+      if (!selected) {
+        feedback.innerHTML = `<div class="alert alert-warning">
+          <i class="fas fa-exclamation-triangle me-2"></i>Please pick an answer!
+        </div>`;
+        return;
+      }
+
+      if (selected === currentQuestion.answer) {
+        score += 10;
+        document.getElementById('score').textContent = score;
+        feedback.innerHTML = `<div class="alert alert-success">
+          <i class="fas fa-check-circle me-2"></i>🎉 Correct! It's a ${currentQuestion.answer}.
+        </div>`;
+      } else {
+        feedback.innerHTML = `<div class="alert alert-danger">
+          <i class="fas fa-times-circle me-2"></i>❌ Try again! The answer was ${currentQuestion.answer}.
+        </div>`;
+      }
+    });
+
+    document.getElementById('newQuestion').addEventListener('click', loadQuestion);
+    document.getElementById('playSound').addEventListener('click', () => {
+      if (audio.src) audio.play().catch(console.error);
+    });
+
+    // YouTube Video Integration
+    async function fetchBirdVideos() {
+      try {
+        const response = await fetch(
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=birds+documentary&type=video&key=${YT_API_KEY}`
+        );
+        if (!response.ok) throw new Error(`YouTube API error: ${response.status}`);
+        return (await response.json()).items;
+      } catch (error) {
+        console.error('Video fetch error:', error);
+        return [];
+      }
+    }
+
+    function displayVideos(videos) {
+      const container = document.getElementById('videoContainer');
+      container.innerHTML = videos.map(video => `
+        <div class="col-md-4">
+          <div class="card h-100 bird-card">
+            <iframe 
+              height="200" 
+              src="https://www.youtube.com/embed/${video.id.videoId}" 
+              title="${video.snippet.title}"
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+            <div class="card-body">
+              <h5 class="card-title">${video.snippet.title}</h5>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      await loadQuestion();
+      const videos = await fetchBirdVideos();
+      displayVideos(videos);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+:root {
+    --sky-blue: #87ceeb;
+    --sunset-orange: #ff7f50;
+    --tree-green: #2e8b57;
+    --twilight-purple: #663399;
+    --feather-gray: #f8f9fa;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, var(--sky-blue), var(--feather-gray));
+    min-height: 100vh;
+  }
+  
+  .handwritten {
+    font-family: 'Caveat', cursive;
+  }
+  
+  .bird-card {
+    transition: transform 0.3s ease-in-out;
+    border: 3px solid var(--tree-green);
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .bird-card:hover {
+    transform: translateY(-5px) rotate(2deg);
+  }
+  
+  .nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: var(--sunset-orange) !important;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--sunset-orange);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  .bird-animation {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+  
+  .flying-bird {
+    position: absolute;
+    font-size: 2rem;
+    animation: fly 15s linear infinite;
+  }
+  
+  @keyframes fly {
+    0% { transform: translateX(-100px) translateY(0) rotate(0deg); }
+    25% { transform: translateX(25%) translateY(-50px) rotate(10deg); }
+    50% { transform: translateX(50%) translateY(0) rotate(0deg); }
+    75% { transform: translateX(75%) translateY(-50px) rotate(-10deg); }
+    100% { transform: translateX(100%) translateY(0) rotate(0deg); }
+  }
+  
+  .quiz-score {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--tree-green);
+    margin-bottom: 1rem;
+  }
+  
+  .sound-button {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .sound-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .loading-spinner {
+    animation: spin 1s linear infinite;
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid var(--tree-green);
+    border-top-color: transparent;
+    border-radius: 50%;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .quiz-error {
+    animation: shake 0.5s;
+    border: 2px solid #dc3545 !important;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: linear-gradient(to bottom, var(--twilight-purple), #1a1a1a);
+      color: #fff;
+    }
+  
+    .bird-card {
+      border-color: var(--sky-blue);
+      background-color: #2c2c2c !important;
+    }
+  
+    .bg-light {
+      background-color: #2c2c2c !important;
+    }
+  
+    .text-primary {
+      color: var(--sky-blue) !important;
+    }
+  }
+  
